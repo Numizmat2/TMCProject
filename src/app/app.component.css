@@ -1,0 +1,22 @@
+.tmc-form {
+  padding: 5px;
+  font-size: large;
+}
+
+
+.tmc-submit-button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  margin: 15px 15px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.tmc-input-field {
+  padding: 12px 20px;
+  margin: 8px 10px 8px 0px;
+  box-sizing: border-box;
+}
