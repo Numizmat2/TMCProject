@@ -4,11 +4,32 @@
   <meta charset="utf-8">
   <title>TMCProject</title>
   <base href="/">
+  <script src="http://mapy.geoportal.gov.pl/iMapLite/js/imapLiteApi-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="http://mapy.geoportal.gov.pl/iMapLite/js/imapLiteApi-coreEx.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+    function initMap() {
+      ILITEAPI.init({
+        "divId" : "iapi",
+        "width" : 800,
+        "height" : 600,
+        "activeGpMapId" : "gp0",
+        "activeGpMaps" : ["gp0","gp1"],
+        "gpplugins": ["clusterLayer"],
+        "activeGpActions" : ["pan","fullExtent"],
+        "scale" : 2000,
+        "marker" : {
+          "x" : 591920,
+          "y" : 259048,
+          "scale":2000
+        }
+      });
+    }
+  </script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body onload="initMap()">
   <app-root></app-root>
 </body>
 </html>

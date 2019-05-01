@@ -15,12 +15,10 @@ export class AppComponent {
   private observable: Observable<any>;
 
   sendData(minx, miny, maxx, maxy) {
-    const inputValues = minx + ',' +  miny + ',' + maxx + ',' + maxy;
+    const inputValues = minx + ',' + miny + ',' + maxx + ',' + maxy;
     this.observable = this.dataService.getPropertyData(inputValues);
     this.observable.subscribe((res) => {
       this.response = res;
     });
   }
-
-
 }

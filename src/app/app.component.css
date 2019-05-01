@@ -3,7 +3,6 @@
   font-size: large;
 }
 
-
 .tmc-submit-button {
   background-color: #4CAF50;
   border: none;
@@ -19,4 +18,8 @@
   padding: 12px 20px;
   margin: 8px 10px 8px 0px;
   box-sizing: border-box;
+}
+
+#iapi {
+  margin: auto;
 }
