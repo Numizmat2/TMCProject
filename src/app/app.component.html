@@ -12,25 +12,25 @@
 <form style="text-align: center; margin: auto">
   <div  class="tmc-form">
     <label>
-    Min X:
+    Y:
     <input type="number" class="tmc-input-field" #minx name="minx" ngModel>
     </label>
     <label>
-    Min Y:
+    X:
     <input type="number" class="tmc-input-field" #miny name="miny" ngModel>
     </label>
   </div>
-  <div class="tmc-form">
-    <label>
-    Max X:
-    <input type="number" class="tmc-input-field" #maxx name="maxx" ngModel>
-    </label>
-    <label>
-    Max Y:
-    <input type="number" class="tmc-input-field" #maxy name="maxy" ngModel>
-    </label>
-  </div>
-  <button type="button" (click)="sendData(minx.value, miny.value, maxx.value, maxy.value)" class="tmc-submit-button">Get Property Info</button>
+  <!--<div class="tmc-form">-->
+    <!--<label>-->
+    <!--Max X:-->
+    <!--<input type="number" class="tmc-input-field" #maxx name="maxx" ngModel>-->
+    <!--</label>-->
+    <!--<label>-->
+    <!--Max Y:-->
+    <!--<input type="number" class="tmc-input-field" #maxy name="maxy" ngModel>-->
+    <!--</label>-->
+  <!--</div>-->
+  <button type="button" (click)="sendData(minx.value, miny.value, minx.value, miny.value)" class="tmc-submit-button">Get Property Info</button>
 </form>
 <div class="container">
   Feature info:

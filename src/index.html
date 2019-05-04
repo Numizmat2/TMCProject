@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>TMCProject</title>
   <base href="/">
+  <script src="http://mapy.geoportal.gov.pl/iMapLite/js/jquery/jquery-2.1.3.min.js"></script>
   <script src="http://mapy.geoportal.gov.pl/iMapLite/js/imapLiteApi-core.js" type="text/javascript" charset="utf-8"></script>
   <script src="http://mapy.geoportal.gov.pl/iMapLite/js/imapLiteApi-coreEx.js" type="text/javascript" charset="utf-8"></script>
   <script type="text/javascript" charset="utf-8">
@@ -12,17 +13,21 @@
         "divId" : "iapi",
         "width" : 800,
         "height" : 600,
-        "activeGpMapId" : "gp0",
-        "activeGpMaps" : ["gp0","gp1"],
-        "gpplugins": ["clusterLayer"],
+        "activeGpMapId" : "gp4",
+        "activeGpMaps" : ["gp0","gp1","gp4"],
+        "gpplugins": ["clusterLayer", "addService"],
         "activeGpActions" : ["pan","fullExtent"],
-        "scale" : 2000,
-        "marker" : {
-          "x" : 591920,
-          "y" : 259048,
-          "scale":2000
-        }
-      });
+        "scale" : 2000
+      }, afterInit);
+    }
+    function afterInit() {
+      $(ILITEAPI).on('onMapClick', function (event) {
+        ILITEAPI.flash(event.evt.mapPoint, undefined, 12, alert(" Kliknięto punkt na mapie " +
+          " x: " + event.evt.mapPoint.x +
+          " y: " + event.evt.mapPoint.y +
+          " Układ EPSG:2180 "
+        ));
+      })
     }
   </script>
 
