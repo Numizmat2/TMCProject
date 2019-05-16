@@ -23,8 +23,8 @@
     function afterInit() {
       $(ILITEAPI).on('onMapClick', function (event) {
         ILITEAPI.flash(event.evt.mapPoint, undefined, 12, alert(" Kliknięto punkt na mapie " +
-          " x: " + event.evt.mapPoint.x +
-          " y: " + event.evt.mapPoint.y +
+          " x: " + event.evt.mapPoint.y +
+          " y: " + event.evt.mapPoint.x +
           " Układ EPSG:2180 "
         ));
       })
