@@ -1,22 +1,74 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { DataService } from './data.service';
 import {Observable} from 'rxjs';
+import proj4 from 'proj4';
+
+declare var ol: any;
+const p2180 = '+proj=tmerc +lat_0=0 +lon_0=19 +k=0.9993 +x_0=500000 +y_0=-5300000 +ellps=GRS80 +units=m +no_defs';
+
+const mousePositionControl = new ol.control.MousePosition({
+  coordinateFormat: ol.coordinate.createStringXY(4),
+  projection: 'EPSG:4326',
+  undefinedHTML: '&nbsp;'
+});
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'TMCProject';
+export class AppComponent implements OnInit {
+  map: any;
 
   constructor(private dataService: DataService) {}
   response;
   error;
   private observable: Observable<any>;
 
-  sendData(minx, miny, maxx, maxy) {
-    const inputValues = minx + ',' + miny + ',' + maxx + ',' + maxy;
+  ngOnInit() {
+    this.map = new ol.Map({
+      target: 'map',
+      controls: ol.control.defaults({
+        attributionOptions: {
+          collapsible: false
+        }
+      }).extend([mousePositionControl]),
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(),
+          isBaseLayer: true,
+        }),
+        new ol.layer.Tile({
+          source: new ol.source.TileWMS({
+            url: 'http://integracja01.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow',
+            params: {
+              LAYERS: 'dzialki,numery_dzialek,budynki'
+            }
+          }),
+          isBaseLayer: false,
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([18, 53]),
+        zoom: 8
+      })
+    });
+
+
+    this.map.on('click', args => {
+      this.response = '';
+      const lonlat = ol.proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
+      const cords = proj4(p2180, lonlat);
+
+      const lon = cords[0];
+      const lat = cords[1];
+      this.sendData(lat, lon);
+    });
+  }
+
+  sendData(lat, lon) {
+    const inputValues = lat + ',' + lon + ',' + lat + ',' + lon;
     this.observable = this.dataService.getPropertyData(inputValues);
     this.observable.subscribe((res) => {
       this.parseResponse(res);

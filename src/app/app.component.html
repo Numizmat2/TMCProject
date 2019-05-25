@@ -1,27 +1,22 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
 
-<div id="iapi"></div>
+<!--<div id="iapi"></div>-->
+<div id="map" class="map"></div>
 <br>
 
 
-<form style="text-align: center; margin: auto">
-  <div  class="tmc-form">
-    <label>
-    X:
-    <input type="number" class="tmc-input-field" #minx name="minx" ngModel>
-    </label>
-    <label>
-    Y:
-    <input type="number" class="tmc-input-field" #miny name="miny" ngModel>
-    </label>
-  </div>
-  <button type="button" (click)="sendData(minx.value, miny.value, minx.value, miny.value)" class="tmc-submit-button">Get Property Info</button>
-</form>
+<!--<form style="text-align: center; margin: auto">-->
+  <!--<div  class="tmc-form">-->
+    <!--<label>-->
+    <!--X:-->
+    <!--<input type="number" class="tmc-input-field" #minx name="minx" ngModel>-->
+    <!--</label>-->
+    <!--<label>-->
+    <!--Y:-->
+    <!--<input type="number" class="tmc-input-field" #miny name="miny" ngModel>-->
+    <!--</label>-->
+  <!--</div>-->
+  <!--<button type="button" (click)="sendData(minx.value, miny.value, minx.value, miny.value)" class="tmc-submit-button">Get Property Info</button>-->
+<!--</form>-->
 <div class="container">
   Feature info:
   <p *ngFor="let item of response">

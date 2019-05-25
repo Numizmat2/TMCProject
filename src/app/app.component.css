@@ -23,3 +23,9 @@
 #iapi {
   margin: auto;
 }
+
+#map {
+  width: 800px;
+  height: 600px;
+  margin: auto;
+}

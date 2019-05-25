@@ -10,5 +10,6 @@
     <orderEntry type="library" name="imapLiteApi-core" level="application" />
     <orderEntry type="library" name="imapLiteApi-coreEx" level="application" />
     <orderEntry type="library" name="jquery-2.1.3" level="application" />
+    <orderEntry type="library" name="ol" level="application" />
   </component>
 </module>
