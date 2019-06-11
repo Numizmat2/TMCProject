@@ -12,7 +12,6 @@ const mousePositionControl = new ol.control.MousePosition({
   undefinedHTML: '&nbsp;'
 });
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,10 +19,9 @@ const mousePositionControl = new ol.control.MousePosition({
 })
 export class AppComponent implements OnInit {
   map: any;
+  content;
 
   constructor(private dataService: DataService) {}
-  response;
-  error;
   private observable: Observable<any>;
 
   ngOnInit() {
@@ -55,19 +53,35 @@ export class AppComponent implements OnInit {
       })
     });
 
+    const overlay = new ol.Overlay({
+      autoPan: true,
+      element: document.getElementById('popup'),
+      autoPanAnimation: {
+        duration: 250
+      }
+    });
+
+    this.map.addOverlay(overlay);
 
     this.map.on('click', args => {
-      this.response = '';
       const lonlat = ol.proj.transform(args.coordinate, 'EPSG:3857', 'EPSG:4326');
       const cords = proj4(p2180, lonlat);
-
-      const lon = cords[0];
-      const lat = cords[1];
-      this.sendData(lat, lon);
+      overlay.setPosition(args.coordinate);
+      this.sendData(cords);
     });
+
+    const closer = document.getElementById('popup-closer');
+
+    closer.onclick = () => {
+      overlay.setPosition(undefined);
+      closer.blur();
+      return false;
+    };
   }
 
-  sendData(lat, lon) {
+  sendData(cords) {
+    const lon = cords[0];
+    const lat = cords[1];
     const inputValues = lat + ',' + lon + ',' + lat + ',' + lon;
     this.observable = this.dataService.getPropertyData(inputValues);
     this.observable.subscribe((res) => {
@@ -90,10 +104,11 @@ export class AppComponent implements OnInit {
       const date = 'Data publikacji: ' + elems.item(7).innerHTML + '\n';
       const inf = 'Informacje dodatkowe o działce: ' + elems.item(8).innerHTML + '\n';
 
-      const results = [id, woj, pow, gmin, ob, nr, kw, date, inf];
-      this.response = results;
+      const popupResults = id + '<br/>' + woj + '<br/>' + pow + '<br/>' + gmin +
+        '<br/>' + ob + '<br/>' + nr + '<br/>' + kw + '<br/>' + date + '<br/>' + inf;
+      this.content = popupResults;
     } else {
-      this.error = 'Usługa nie udostępnia danych opisowych dla wybranego obiektu';
+      this.content = 'Usługa nie udostępnia danych opisowych dla wybranego obiektu';
     }
   }
 }

@@ -1,29 +1,7 @@
-
-<!--<div id="iapi"></div>-->
 <div id="map" class="map"></div>
-<br>
-
-
-<!--<form style="text-align: center; margin: auto">-->
-  <!--<div  class="tmc-form">-->
-    <!--<label>-->
-    <!--X:-->
-    <!--<input type="number" class="tmc-input-field" #minx name="minx" ngModel>-->
-    <!--</label>-->
-    <!--<label>-->
-    <!--Y:-->
-    <!--<input type="number" class="tmc-input-field" #miny name="miny" ngModel>-->
-    <!--</label>-->
-  <!--</div>-->
-  <!--<button type="button" (click)="sendData(minx.value, miny.value, minx.value, miny.value)" class="tmc-submit-button">Get Property Info</button>-->
-<!--</form>-->
-<div class="container">
-  Feature info:
-  <p *ngFor="let item of response">
-    {{item}} <br/>
-  </p>
-  <p>
-    {{error}}
-  </p>
+<div id="popup" #popup class="ol-popup">
+  <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+  <div id="popup-content" [innerHTML]="content"></div>
 </div>
+<br>
 
