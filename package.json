@@ -23,7 +23,7 @@
     "@types/jquery": "^3.3.29",
     "@types/proj4": "^2.5.0",
     "core-js": "^2.5.4",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ngx-xml2json": "latest",
     "ol": "^5.3.3",
     "proj4": "^2.5.0",
